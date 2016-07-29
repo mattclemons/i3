@@ -19,8 +19,15 @@ bindsym $mod+q kill
 #bindsym $mod+d exec rofi -show run -lines 5 -eh 2 -width 70 -padding 100 -opacity "70" -bw 0 -bc "$base01" -bg "$base02" -fg "$base07" -hlbg "$base05" -columns 2 -font "System San Francisco Display 15" -hlfg "#9575cd"
 bindsym $mod+d exec rofi -show run -font "snap 10" -opacity "70" -fg "#505050" -bg "#000000" -hlfg "#ffb964" -hlbg "#000000" -o 70
 
+# start run menu
+bindsym $mod+r exec --no-startup-id gmrun
+
 #i3menu. window menu
 bindsym $mod+i exec --no-startup-id i3menu goto_workspace
+
+# snapfly floating menu
+bindsym $mod+m exec --no-startup-id snapfly-show
+
 
 # change focus
 bindsym $mod+Left focus left
@@ -163,7 +170,7 @@ bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
 
 # Resize
-bindsym $mod+r mode "resize"
+bindsym $mod+Control+r mode "resize"
 
 # top bar
 bar {
