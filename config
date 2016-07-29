@@ -1,0 +1,203 @@
+# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+set $mod Mod4
+
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar section.
+#font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+font pango:System San Francisco Display 8
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# start a terminal
+bindsym $mod+Return exec --no-startup-id terminator
+
+# kill focused window
+bindsym $mod+q kill
+
+# start rofi menu (a program launcher)
+#bindsym $mod+d exec rofi -show run -lines 5 -eh 2 -width 70 -padding 100 -opacity "70" -bw 0 -bc "$base01" -bg "$base02" -fg "$base07" -hlbg "$base05" -columns 2 -font "System San Francisco Display 15" -hlfg "#9575cd"
+bindsym $mod+d exec rofi -show run -font "snap 10" -opacity "70" -fg "#505050" -bg "#000000" -hlfg "#ffb964" -hlbg "#000000" -o 70
+
+#i3menu. window menu
+bindsym $mod+i exec --no-startup-id i3menu goto_workspace
+
+# change focus
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+h split h
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+space floating toggle
+# change focus between tiling / floating windows
+#bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+# focus the child container
+#bindsym $mod+d focus child
+
+
+#set $WS1 
+#set $WS2 
+#set $WS3 
+#set $WS4 
+#set $WS5 
+#set $WS6 
+#set $WS7 
+#set $WS8 
+#set $WS9 
+#set $WS10 
+
+# switch to workspace
+bindsym $mod+1 workspace 1:
+bindsym $mod+2 workspace 2:
+bindsym $mod+3 workspace 3:
+bindsym $mod+4 workspace 4:
+bindsym $mod+5 workspace 5:
+bindsym $mod+6 workspace 6:
+bindsym $mod+7 workspace 7:
+bindsym $mod+8 workspace 8:
+bindsym $mod+9 workspace 9:
+bindsym $mod+0 workspace 10:
+
+# start apps in workspaces
+exec --no-startup-id i3-msg 'workspace 1:; exec firefox'
+exec --no-startup-id i3-msg 'workspace 2:; exec terminator'
+exec --no-startup-id i3-msg 'workspace 3:; exec nautilus'
+exec --no-startup-id i3-msg 'workspace 4:; exec okular'
+exec --no-startup-id i3-msg 'workspace 5:; exec vlc'
+
+# restore layouts
+#exec --no-startup-id "i3-msg 'workspace 2:; append_layout /home/matt/.config/i3/workspace-2.json'"
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1:
+bindsym $mod+Shift+2 move container to workspace 2:
+bindsym $mod+Shift+3 move container to workspace 3:
+bindsym $mod+Shift+4 move container to workspace 4:
+bindsym $mod+Shift+5 move container to workspace 5:
+bindsym $mod+Shift+6 move container to workspace 6:
+bindsym $mod+Shift+7 move container to workspace 7:
+bindsym $mod+Shift+8 move container to workspace 8:
+bindsym $mod+Shift+9 move container to workspace 9:
+bindsym $mod+Shift+0 move container to workspace 10:
+
+# Window border style: normal: border normal, with window title bar;
+# none: no border or window title bar; 1pixel: 1 pixel border.
+new_window normal
+bindsym $mod+t border normal
+bindsym $mod+y border 1pixel
+bindsym $mod+u border none
+
+# shutdown, hibernate, etc function
+set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+mode "$mode_system" {
+bindsym l exec --no-startup-id /home/matt/.config/i3/i3exit lock, mode "default"
+bindsym e exec --no-startup-id /home/matt/.config/i3/i3exit logout, mode "default"
+bindsym s exec --no-startup-id /home/matt/.config/i3/i3exit suspend, mode "default"
+bindsym h exec --no-startup-id /home/matt/.config/i3/i3exit hibernate, mode "default"
+bindsym r exec --no-startup-id /home/matt/.config/i3/i3exit reboot, mode "default"
+#bindsym $mod+Shift+s exec --no-startup-id i3exit shutdown, mode "default"
+# back to normal: Enter or Escape
+bindsym Return mode "default"
+bindsym Escape mode "default"
+}
+bindsym $mod+F2 mode "$mode_system"
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+# These bindings trigger as soon as you enter the resize mode
+# Pressing left will shrink the window?s width.
+# Pressing right will grow the window?s width.
+# Pressing up will shrink the window?s height.
+# Pressing down will grow the window?s height.
+bindsym j resize shrink width 10 px or 10 ppt
+bindsym k resize grow height 10 px or 10 ppt
+bindsym l resize shrink height 10 px or 10 ppt
+bindsym semicolon resize grow width 10 px or 10 ppt
+# same bindings, but for the arrow keys
+bindsym Left resize shrink width 10 px or 10 ppt
+bindsym Down resize grow height 10 px or 10 ppt
+bindsym Up resize shrink height 10 px or 10 ppt
+bindsym Right resize grow width 10 px or 10 ppt
+# back to normal: Enter or Escape
+bindsym Return mode "default"
+bindsym Escape mode "default"
+}
+
+#volume control
+#bindsym $mod+F11 exec amixer set Master 5%-
+#bindsym $mod+F12 exec amixer set Master 5%+
+#Brightness control
+#bindsym $mod+F4 exec xbacklight -dec 5
+#bindsym $mod+F5 exec xbacklight -inc 5
+# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+
+# Sreen brightness controls
+bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+
+# Resize
+bindsym $mod+r mode "resize"
+
+# top bar
+bar {
+status_command i3status -c /home/matt/.config/i3/status
+position top
+# tray_output none
+# mode hide
+strip_workspace_numbers yes
+font xft:Cousine, FontAwesome 10
+colors {
+background #333333
+statusline #2E9AFE
+separator #00000
+#Bord #Back #Text
+focused_workspace #2E9AFE #2E9AFE #000000
+active_workspace #333333 #3333333 #7F7F7F
+inactive_workspace #333333 #333333 #7F7F7F
+urgent_workspace #000000 #000000 #900000
+}
+}
+
+#Startup apps
+exec_always --no-startup-id nitrogen --restore
+exec --no-startup-id /usr/bin/nm-applet
+exec --no-startup-id volumeicon
+exec --no-startup-id dropbox
+exec --no-startup-id compton -b
+exec --no-startup-id tilda
+
+# take screenshot
+bindsym --release $mod+p exec scrot -s '%Y-%m-%d_$wx$h_scrot.png' -e 'mv $f ~/Pictures/'
