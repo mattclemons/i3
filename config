@@ -62,35 +62,35 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
-#set $WS1 
-#set $WS2 
-#set $WS3 
-#set $WS4 
-#set $WS5 
-#set $WS6 
-#set $WS7 
-#set $WS8 
-#set $WS9 
-#set $WS10 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# tor 
 
 # switch to workspace
 bindsym $mod+1 workspace 1:
 bindsym $mod+2 workspace 2:
 bindsym $mod+3 workspace 3:
 bindsym $mod+4 workspace 4:
-bindsym $mod+5 workspace 5:
-bindsym $mod+6 workspace 6:
+bindsym $mod+5 workspace 5:
+bindsym $mod+6 workspace 6:
 bindsym $mod+7 workspace 7:
 bindsym $mod+8 workspace 8:
 bindsym $mod+9 workspace 9:
-bindsym $mod+0 workspace 10:
 
 # start apps in workspaces
 exec --no-startup-id i3-msg 'workspace 1:; exec firefox'
 exec --no-startup-id i3-msg 'workspace 2:; exec terminator'
 exec --no-startup-id i3-msg 'workspace 3:; exec nautilus'
 exec --no-startup-id i3-msg 'workspace 4:; exec okular'
-exec --no-startup-id i3-msg 'workspace 5:; exec vlc'
+# exec --no-startup-id i3-msg 'workspace 5:; exec vlc'
 
 # restore layouts
 #exec --no-startup-id "i3-msg 'workspace 2:; append_layout /home/matt/.config/i3/workspace-2.json'"
@@ -163,8 +163,10 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #d
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+#bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
+#bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec backlight 15
+bindsym XF86MonBrightnessDown exec backlight -15
 
 # Resize
 bindsym $mod+Control+r mode "resize"
@@ -192,10 +194,12 @@ urgent_workspace #000000 #000000 #900000
 #Startup apps
 exec_always --no-startup-id nitrogen --restore
 exec --no-startup-id /usr/bin/nm-applet
-exec --no-startup-id volumeicon
-exec --no-startup-id dropbox
+# exec --no-startup-id volumeicon
+exec --no-startup-id dropbox start
 exec --no-startup-id compton -b
 exec --no-startup-id tilda
+exec --no-startup-id snapfly
+exec --no-startup-id sabnzbdplus
 
 # take screenshot selection
 bindsym --release $mod+Shift+p exec scrot -s '%Y-%m-%d_$wx$h_scrot.png' -e 'mv $f ~/Pictures/'
