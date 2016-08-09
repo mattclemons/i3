@@ -73,24 +73,25 @@ bindsym $mod+a focus parent
 # 
 # 
 # tor 
+# 
 
 # switch to workspace
 bindsym $mod+1 workspace 1:
 bindsym $mod+2 workspace 2:
 bindsym $mod+3 workspace 3:
 bindsym $mod+4 workspace 4:
-bindsym $mod+5 workspace 5:
-bindsym $mod+6 workspace 6:
-bindsym $mod+7 workspace 7:
+bindsym $mod+5 workspace 5:
+bindsym $mod+6 workspace 6:
+bindsym $mod+7 workspace 7:
 bindsym $mod+8 workspace 8:
 bindsym $mod+9 workspace 9:
 
 # start apps in workspaces
 exec --no-startup-id i3-msg 'workspace 1:; exec firefox'
-exec --no-startup-id i3-msg 'workspace 2:; exec terminator'
+exec --no-startup-id i3-msg 'workspace 2:; exec terminator; exec terminator'
 exec --no-startup-id i3-msg 'workspace 3:; exec nautilus'
 exec --no-startup-id i3-msg 'workspace 4:; exec okular'
-# exec --no-startup-id i3-msg 'workspace 5:; exec vlc'
+exec --no-startup-id i3-msg 'workspace 5:; exec gnome-terminal'
 
 # restore layouts
 #exec --no-startup-id "i3-msg 'workspace 2:; append_layout /home/matt/.config/i3/workspace-2.json'"
@@ -100,9 +101,9 @@ bindsym $mod+Shift+1 move container to workspace 1:
 bindsym $mod+Shift+2 move container to workspace 2:
 bindsym $mod+Shift+3 move container to workspace 3:
 bindsym $mod+Shift+4 move container to workspace 4:
-bindsym $mod+Shift+5 move container to workspace 5:
-bindsym $mod+Shift+6 move container to workspace 6:
-bindsym $mod+Shift+7 move container to workspace 7:
+bindsym $mod+Shift+5 move container to workspace 5:
+bindsym $mod+Shift+6 move container to workspace 6:
+bindsym $mod+Shift+7 move container to workspace 7:
 bindsym $mod+Shift+8 move container to workspace 8:
 bindsym $mod+Shift+9 move container to workspace 9:
 bindsym $mod+Shift+0 move container to workspace 10:
@@ -173,7 +174,7 @@ bindsym $mod+Control+r mode "resize"
 
 # top bar
 bar {
-status_command i3status -c /home/matt/.config/i3/status
+status_command i3status -c /home/matt/.config/i3/i3status.conf
 position top
 # tray_output none
 # mode hide
@@ -200,8 +201,36 @@ exec --no-startup-id compton -b
 exec --no-startup-id tilda
 exec --no-startup-id snapfly
 exec --no-startup-id sabnzbdplus
+exec --no-startup-id remmina -i
 
 # take screenshot selection
 bindsym --release $mod+Shift+p exec scrot -s '%Y-%m-%d_$wx$h_scrot.png' -e 'mv $f ~/Pictures/'
 # take full screenshot
 bindsym $mod+p exec scrot '%Y-%m-%d_$wx$h_scrot.png' -e 'mv $f ~/Pictures/'
+
+#### RULES FOR SPECIFIC APPLICATIONS ####
+
+# by APPLICATION (WM_CLASS)
+# Note: class is typically useful for applying custom settings to
+#       to entire applications, including child windows. If this
+#       isn't want you want see the ROLE section, below.
+# Tip: To find out what these values might be run:
+#       xprop | grep -i 'class'
+for_window [class="File-roller"] floating enable, border normal
+for_window [class="Python"] floating enable, border none
+for_window [class="Nautilus"] floating enable, border normal
+for_window [class="Gimp"] floating enable, border normal
+for_window [class="Tk"] floating enable, border normal
+for_window [class="Turtle"] floating enable, border normal
+for_window [class="Remmina"] floating enable, border normal
+
+
+# by ROLE (WM_WINDOW_ROLE)
+# Note: window_role is Typically useful for effecting child windows
+#       such as instant messaging converstations, email composition
+#       windows, etc.
+# Tip: To find out what these values might be run:
+#       xprop | grep -i 'role'#
+for_window [window_role="conversation"] floating enable, border normal
+for_window [window_role="Msgcompose"] floating enable, border normal
+
