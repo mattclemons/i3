@@ -1,7 +1,4 @@
 #/bin/bash
-
-# add "chmod 666 /sys/class/backlight/intel_backlight/brightness" to /etc/rc.local
-
 var1=$(($1 + $(cat /sys/class/backlight/intel_backlight/brightness)))
 echo $var1 > /sys/class/backlight/intel_backlight/brightness
 

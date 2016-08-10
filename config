@@ -223,6 +223,8 @@ for_window [class="Gimp"] floating enable, border normal
 for_window [class="Tk"] floating enable, border normal
 for_window [class="Turtle"] floating enable, border normal
 for_window [class="Remmina"] floating enable, border normal
+for_window [class="wmbattery"] floating enable, border normal
+for_window [class="brasero"] floating enable, border normal
 
 
 # by ROLE (WM_WINDOW_ROLE)
