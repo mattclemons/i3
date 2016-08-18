@@ -15,12 +15,14 @@ bindsym $mod+Return exec --no-startup-id terminator
 # kill focused window
 bindsym $mod+q kill
 
-# start rofi program launcher
-#bindsym $mod+d exec rofi -show run -font "snap 10" -opacity "70" -fg "#505050" -bg "#000000" -hlfg "#ffb964" -hlbg "#000000" -o 70
-bindsym $mod+d exec dmenu
+# start program launcher
+bindsym $mod+d exec kupfer
 
 # start run menu
 bindsym $mod+r exec --no-startup-id gmrun
+
+# start file explorer
+bindsym $mod+e exec --no-startup-id dolphin
 
 #i3menu window menu
 bindsym $mod+i exec --no-startup-id i3menu goto_workspace
@@ -49,9 +51,9 @@ bindsym $mod+v split v
 bindsym $mod+f fullscreen
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+bindsym $mod+Control+s layout stacking
+bindsym $mod+Control+w layout tabbed
+bindsym $mod+Control+e layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+space floating toggle
@@ -104,10 +106,10 @@ bindsym $mod+0 workspace 10:
 # start apps in workspaces
 exec --no-startup-id i3-msg 'workspace 1:; exec firefox-esr'
 exec --no-startup-id i3-msg 'workspace 2:; exec terminator; exec terminator'
-exec --no-startup-id i3-msg 'workspace 3:; exec caja'
+exec --no-startup-id i3-msg 'workspace 3:; exec dolphin'
 exec --no-startup-id i3-msg 'workspace 4:; exec okular'
 exec --no-startup-id i3-msg 'workspace 5:; exec eclipse'
-exec --no-startup-id i3-msg 'workspace 8:; exec steam'
+#exec --no-startup-id i3-msg 'workspace 8:; exec steam'
 exec --no-startup-id i3-msg 'workspace 9:; exec terminator; exec terminator'
 exec --no-startup-id i3-msg 'workspace 10:; exec terminator; exec terminator'
 
@@ -142,7 +144,7 @@ bindsym e exec --no-startup-id /home/matt/.i3/i3exit logout, mode "default"
 bindsym s exec --no-startup-id /home/matt/.i3/i3exit suspend, mode "default"
 bindsym h exec --no-startup-id /home/matt/.i3/i3exit hibernate, mode "default"
 bindsym r exec --no-startup-id /home/matt/.i3/i3exit reboot, mode "default"
-#bindsym $mod+Shift+s exec --no-startup-id i3exit shutdown, mode "default"
+bindsym Shift+s exec --no-startup-id /home/matt/.i3/i3exit shutdown, mode "default"
 # back to normal: Enter or Escape
 bindsym Return mode "default"
 bindsym Escape mode "default"
@@ -199,16 +201,18 @@ position top
 tray_output primary
 # mode hide
 strip_workspace_numbers yes
-font xft:Cousine, FontAwesome 10
+#font xft:Cousine, FontAwesome 10
+font pango:System San Francisco Display, , FontAwesome 10
 colors {
 background #333333
-statusline #2E9AFE
+#statusline #2E9AFE
+statusline #FFFFFF
 separator #00000
 #Bord #Back #Text
 focused_workspace #2E9AFE #2E9AFE #000000
 active_workspace #333333 #3333333 #7F7F7F
 inactive_workspace #333333 #333333 #7F7F7F
-urgent_workspace #000000 #000000 #900000
+urgent_workspace #000000 #000000 #FFFFFF
 }
 }
 
@@ -243,7 +247,7 @@ exec --no-startup-id snapfly
 exec --no-startup-id sabnzbdplus
 exec --no-startup-id remmina -i
 exec --no-startup-id xscreensaver
-#exec /home/matt/.i3/locker.sh
+#exec --no-startup-id sabnzbdplus
 
 # take screenshot selection
 bindsym --release $mod+Shift+p exec scrot -s '%Y-%m-%d_$wx$h_scrot.png' -e 'mv $f ~/Pictures/'
@@ -266,7 +270,8 @@ for_window [class="Turtle"] floating enable, border normal
 for_window [class="Remmina"] floating enable, border normal
 for_window [class="wmbattery"] floating enable, border normal
 for_window [class="brasero"] floating enable, border normal
-for_window [class="Tilda"] floating enable, border none
+for_window [class="Vlc"] floating enable, border normal
+for_window [class="Steam"] floating enable, border normal
 
 
 # by ROLE (WM_WINDOW_ROLE)
